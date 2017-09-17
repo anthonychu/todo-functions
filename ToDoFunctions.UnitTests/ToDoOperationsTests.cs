@@ -1,20 +1,28 @@
 ﻿using Microsoft.Azure.WebJobs.Host;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Hosting;
+using ToDoFunctions.Entities;
+using ToDoFunctions.UnitTests.Stubs;
 using Xunit;
 
 namespace ToDoFunctions.UnitTests
 {
-    public class ToDoOperationsTests
+    public class ToDoOperationsTests : IClassFixture<TestTelemetryClientFactory>
     {
+      
+
+        public ToDoOperationsTests(TestTelemetryClientFactory telemetryClientFactory)
+        {
+
+            ToDoOperations.telemetryFactory = telemetryClientFactory;
+        }
+
         [Fact]
         public async Task GetAllToDos_ShouldReturnAllToDos()
         {
