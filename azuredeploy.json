@@ -2,6 +2,12 @@
     "parameters": {
         "siteName": {
             "type": "string"
+        },
+        "repoUrl": {
+            "type": "string"
+        },
+        "branch": {
+            "type": "string"
         }
     },
     "variables": {
@@ -71,6 +77,21 @@
                 "name": "[parameters('siteName')]",
                 "clientAffinityEnabled": false
             },
+            "resources": [
+                {
+                    "apiVersion": "2014-04-01",
+                    "name": "web",
+                    "type": "sourcecontrols",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+                    ],
+                    "properties": {
+                        "RepoUrl": "[parameters('repoUrl')]",
+                        "branch": "[parameters('branch')]",
+                        "IsManualIntegration": true
+                    }
+                }
+            ],
             "apiVersion": "2016-03-01",
             "location": "[resourceGroup().location]",
             "kind": "functionapp"
