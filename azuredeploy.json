@@ -11,7 +11,7 @@
         }
     },
     "variables": {
-        "storageName": "[concat('notbacon', uniqueString(parameters('siteName'), resourceGroup().id))]"
+        "storageName": "[concat('todofunc', uniqueString(parameters('siteName'), resourceGroup().id))]"
     },
     "resources": [
         {
