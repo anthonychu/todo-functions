@@ -1,3 +1,5 @@
+$ProgressPreference="SilentlyContinue"
+
 $destinationUri = "https://$($Env:STORAGE_HOSTNAME)/www"
 $destinationKey = $Env:STORAGE_KEY
 .\deployment\AzCopy.exe /Source:.\test /Dest:$destinationUri /DestKey:$destinationKey
